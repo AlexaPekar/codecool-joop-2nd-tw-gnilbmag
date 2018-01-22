@@ -9,7 +9,7 @@ public class Simulator{
     }
 
 
-    public Resuolt run(){
+    public Result run(){
         return null;
     }
 }

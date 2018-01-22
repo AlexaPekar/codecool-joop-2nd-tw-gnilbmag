@@ -4,6 +4,5 @@ public class Logger {
 
     //using TimeStamp for example, Use java.util.Date for creating timestamps.
     public void log(String type, String message) {
-        return null;
     }
 }
