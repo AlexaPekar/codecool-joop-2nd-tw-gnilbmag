@@ -7,13 +7,21 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        
         Simulation simulation = new Simulation();
-        String [][] nums = simulation.load("../data/lotteryNumbers.csv");
+        Simulator test = new Simulator(simulation);
+        /*String [][] nums = simulation.load("../data/lotteryNumbers.csv");
         for (String[] num : nums) {
             for (String nu : num) {
                 System.out.print(nu + " ");
             }
             System.out.println();
+        }*/
+
+        test.countNums();
+
+        for(int i=0;i<test.numOccurances.length;i++){
+            System.out.println(test.numOccurances[i]);
         }
 
     }
