@@ -7,6 +7,14 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        
+        Simulation simulation = new Simulation();
+        String [][] nums = simulation.load("../data/lotteryNumbers.csv");
+        for (String[] num : nums) {
+            for (String nu : num) {
+                System.out.print(nu + " ");
+            }
+            System.out.println();
+        }
+
     }
 }
