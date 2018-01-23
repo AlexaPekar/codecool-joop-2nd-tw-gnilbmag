@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Simulator{
 
     Simulation simulation;
@@ -26,55 +28,39 @@ public class Simulator{
     }
 
     public int[] collectWinningNumbers(int[] numberOccurences) {
-        int first = 0, second = 0, third = 0, fourth = 0, fifth = 0, sixth = 0;
+        
+        
+
+        LotteryNumbers[] numbers = new LotteryNumbers[45];
         for (int i = 0; i < numberOccurences.length; i++) {
-                if (numberOccurences[i] > first) {
-                    sixth = fifth;
-                    fifth = fourth;
-                    fourth = third;
-                    third = second;
-                    second = first;
-                    first = numberOccurences[i];
-                }
-                else if (numberOccurences[i] > second) {
-                    sixth = fifth;
-                    fifth = fourth;
-                    fourth = third;
-                    third = second;
-                    second = i+1;
-                }
-                else if (numberOccurences[i] > third) {
-                    sixth = fifth;
-                    fifth = fourth;
-                    fourth = third;
-                    third = i+1;
-                }
-                else if (numberOccurences[i] > fourth) {
-                    sixth = fifth;
-                    fifth = fourth;
-                    fourth = i+1;
-                }
-                else if (numberOccurences[i] > fifth) {
-                    sixth = fifth;
-                    fifth = i+1;
-                }
-                else if (numberOccurences[i] > sixth) {
-                    sixth = i+1;
-                }
+             numbers[i]=new LotteryNumbers(i+1, numberOccurences[i]);
+                
         }
-        int [] winningNumbers = {first, second, third, fourth, fifth, sixth};
-        int [] foundWinningNumbers = new int[6];
-        for (int i = 0; i < numberOccurences.length; i++) {
-            for (int j = 0; j < winningNumbers.length; j++) {
-                if (numberOccurences[i] == winningNumbers[j]) {
-                    if (foundWinningNumbers[j] == 0) {
-                        foundWinningNumbers[j] = i+1;
-                        System.out.println(foundWinningNumbers[j]);
-                    }
-                }   
+        
+        LotteryNumbers tmp;
+        
+        for(int x=0;x<numbers.length;x++){
+            for(int l=0; l<numbers.length-1;l++){
+                if(numbers[l].occurance<numbers[l+1].occurance){
+                    tmp=numbers[l];
+                    numbers[l]=numbers[l+1];
+                    numbers[l+1]=tmp;
+                }
             }
         }
-        return foundWinningNumbers;
+
+        for(int p =0;p<numbers.length;p++){
+            System.out.println(numbers[p].occurance);
+        }
+
+        
+                        
+                   
+              
+                 
+            
+        
+        return null;
     }
 
 

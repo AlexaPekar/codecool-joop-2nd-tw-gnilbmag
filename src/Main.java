@@ -10,23 +10,23 @@ public class Main {
         
         Simulation simulation = new Simulation();
         Simulator test = new Simulator(simulation);
-        /*String [][] nums = simulation.load("../data/lotteryNumbers.csv");
+        String [][] nums = simulation.load("../data/lotteryNumbers.csv");
         for (String[] num : nums) {
             for (String nu : num) {
-                System.out.print(nu + " ");
+                //System.out.print(nu + " ");
             }
-            System.out.println();
-        }*/
+            //System.out.println();
+        }
 
         test.countNums();
 
+        test.collectWinningNumbers(test.numOccurances);
+
         /*for(int i=0;i<test.numOccurances.length;i++){
-            System.out.println(test.numOccurances[i]);
+            System.out.println(i+1+" "+ test.numOccurances[i]);
         }*/
 
-        for (int x : test.collectWinningNumbers(test.numOccurances)) {
-            System.out.println(x);
+        
         }
 
     }
-}
