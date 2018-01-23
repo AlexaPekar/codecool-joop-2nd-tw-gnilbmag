@@ -11,9 +11,9 @@ public class Simulator{
         this.simulation=simulation;
     }
 
-    /*public Result run(){
-        
-    }*/
+    public Result run(){
+        return null;
+    }
 
     public void countNums() {
         String[][] tmpArray = simulation.load("../data/lotteryNumbers.csv");

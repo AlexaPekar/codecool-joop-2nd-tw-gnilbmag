@@ -2,12 +2,14 @@
 
 public class Result {
 
+    Statistics statistics;
+    
+
     public Statistics getStatistics() {
         return null;
     }
 
-    public void setStatistics() {
-
-    }
+    /*public void setStatistics() {
+    }*/
 
 }
