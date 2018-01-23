@@ -2,28 +2,31 @@
 
 public class Main {
 
-    public Simulation generateSimulation(int round) {
-        return null;
+    public static Simulation generateSimulation(int round) {
+        Simulation mySimulation = new Simulation();
+        mySimulator.countNums(); 
+        for(int i=0;i<round;i++){
+            mySimulator.run();
+        }
+        
+        
+        return mySimulation;
     }
 
     public static void main(String[] args) {
-        
-        Simulation simulation = new Simulation();
+        /*Simulation simulation = new Simulation();
         Simulator test = new Simulator(simulation);
-        String [][] nums = simulation.load("../data/lotteryNumbers.csv");
-        for (String[] num : nums) {
-            for (String nu : num) {
-                //System.out.print(nu + " ");
-            }
-            //System.out.println();
-        }
+        test.countNums();*/
 
-        test.countNums();
+        Logger logger = new Logger();
+        Simulation simulation = generateSimulation(Integer.parseInt(args[0]));
+        Simulator simulator = new Simulator(simulation, logger);
+        Result result = simulator.run();
+        logger.print(result.getStrategy());
+        
 
-        for(int x :test.collectWinningNumbers(test.numOccurances)){
-            System.out.println(x);
-        }
-        int[] datas = {1,2,35655,4,5,4864};
-        simulation.generateData(datas);
+        
+
+      
     }
 }
