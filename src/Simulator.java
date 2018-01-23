@@ -1,18 +1,46 @@
 import java.util.Arrays;
+import java.util.Random;
 
 public class Simulator{
 
     Simulation simulation;
     Logger logger;
-    int[] numOccurances = new int[45];   //Counts occurances of each number
+    int[] numOccurances = new int[45];  //Counts occurances of each number
 
 
     public Simulator(Simulation simulation/*Logger logger*/){
         this.simulation=simulation;
     }
 
+    public boolean equals(LotteryNumbers a,LotteryNumbers b){
+        if(a.number == b.number){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    public void isIn(int num,int[] array)
+ 
     public Result run(){
-        return null;
+        
+        Random rand = new Random();
+        LotteryNumbers[] nums = new LotteryNumbers[6];
+        
+        for(int i=0;i<6;i++){
+            int randNum=rand.nextInt(46)+1;
+            if (equals(randNum,nums[i])) {
+
+            } else {
+            nums[i]=new LotteryNumbers(randNum);
+            }
+        }
+        Result results = new Result();
+        results.lotteryNums=nums;
+        simulation.generateData(nums);
+        
+        return results;
     }
 
     public void countNums() {
