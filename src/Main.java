@@ -20,11 +20,11 @@ public class Main {
 
         test.countNums();
 
-        test.collectWinningNumbers(test.numOccurances);
+        for(int x :test.collectWinningNumbers(test.numOccurances)){
+            System.out.println(x);
+        }
 
-        /*for(int i=0;i<test.numOccurances.length;i++){
-            System.out.println(i+1+" "+ test.numOccurances[i]);
-        }*/
+        
 
         
         }

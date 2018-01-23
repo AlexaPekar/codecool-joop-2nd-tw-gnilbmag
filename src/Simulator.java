@@ -49,18 +49,14 @@ public class Simulator{
             }
         }
 
-        for(int p =0;p<numbers.length;p++){
-            System.out.println(numbers[p].occurance);
+        int [] result = new int[6];
+        for(int r = 0;r<6;r++){
+            result[r]=numbers[r].number;
         }
-
         
-                        
-                   
-              
-                 
-            
+  
         
-        return null;
+        return result;
     }
 
 
