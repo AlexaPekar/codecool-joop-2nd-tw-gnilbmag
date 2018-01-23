@@ -5,17 +5,19 @@ import java.io.*;
 
 public class Simulation{
 
-
-    public Simulation(){
-    }
+    String[][] previousLotteryNumbers;
 
     public void generateData(int[] winningNumbers) {
         String[][] tempArray = load("../data/simulationResults.csv");
+        previousLotteryNumbers = new String[tempArray.length+1][6];
+        int counter = 0;
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("../data/simulationResults.csv"));
             StringBuilder sb = new StringBuilder();
             int collCnt = 0;
             for (String[] elements : tempArray){
+                previousLotteryNumbers[counter] = tempArray[counter];
+                counter++;
                 for (String element : elements){
                     sb.append(element);
                     collCnt++;
@@ -33,7 +35,8 @@ public class Simulation{
                     sb.append(";");
                 }
             }
-                sb.append("\n");
+            previousLotteryNumbers[previousLotteryNumbers.length-1] = sb.toString().split(";");
+            sb.append("\n");
         String myStr = sb.toString();
         myStr = myStr.substring(0, myStr.length()-1);
         bw.write (myStr);
