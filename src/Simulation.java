@@ -9,8 +9,38 @@ public class Simulation{
     public Simulation(){
     }
 
-    public void generateData(){
-
+    public void generateData(int[] winningNumbers) {
+        String[][] tempArray = load("../data/simulationResults.csv");
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter("../data/simulationResults.csv"));
+            StringBuilder sb = new StringBuilder();
+            int collCnt = 0;
+            for (String[] elements : tempArray){
+                for (String element : elements){
+                    sb.append(element);
+                    collCnt++;
+                    if (collCnt != 6){
+                        sb.append(";");
+                    }
+                }
+                sb.append("\n");
+                collCnt = 0;
+            }
+            for (int number : winningNumbers) {
+                sb.append(Integer.toString(number));
+                collCnt++;
+                if (collCnt != 6){
+                    sb.append(";");
+                }
+            }
+                sb.append("\n");
+        String myStr = sb.toString();
+        myStr = myStr.substring(0, myStr.length()-1);
+        bw.write (myStr);
+        bw.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
     }
 
     public int lineCounter(String csvPath) {

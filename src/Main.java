@@ -23,10 +23,7 @@ public class Main {
         for(int x :test.collectWinningNumbers(test.numOccurances)){
             System.out.println(x);
         }
-
-        
-
-        
-        }
-
+        int[] datas = {1,2,35655,4,5,4864};
+        simulation.generateData(datas);
     }
+}
