@@ -20,31 +20,19 @@ public class Simulator{
         }
 
     }
-
-    public void isIn(int num,int[] array)
  
     public Result run(){
-        
-        Random rand = new Random();
-        LotteryNumbers[] nums = new LotteryNumbers[6];
-        
-        for(int i=0;i<6;i++){
-            int randNum=rand.nextInt(46)+1;
-            if (equals(randNum,nums[i])) {
-
-            } else {
-            nums[i]=new LotteryNumbers(randNum);
-            }
-        }
         Result results = new Result();
-        results.lotteryNums=nums;
-        simulation.generateData(nums);
-        
+        countNums();
+        results.lotteryNums=collectWinningNumbers(numOccurances);
+        for(LotteryNumbers x : results.lotteryNums){
+            System.out.println(x.number+" "+x.occurance); //instead call a logger method or sth like that ;)
+        }
         return results;
     }
 
     public void countNums() {
-        String[][] tmpArray = simulation.load("../data/lotteryNumbers.csv");
+        String[][] tmpArray = simulation.load("../data/simulationResults.csv");
         int counter = 0;
         for(int i = 0; i < tmpArray.length;i++) {
             for(int k = 0; k < tmpArray[i].length;k++) {
@@ -53,7 +41,7 @@ public class Simulator{
         }
     }
 
-    public int[] collectWinningNumbers(int[] numberOccurences) {
+    public LotteryNumbers[] collectWinningNumbers(int[] numberOccurences) {
         LotteryNumbers[] numbers = new LotteryNumbers[45];
         for (int i = 0; i < numberOccurences.length; i++) {
              numbers[i] = new LotteryNumbers(i + 1, numberOccurences[i]);
@@ -71,9 +59,9 @@ public class Simulator{
             }
         }
 
-        int [] result = new int[6];
+        LotteryNumbers [] result = new LotteryNumbers[6];
         for(int r = 0; r < 6; r++) {
-            result[r] = numbers[r].number;
+            result[r] = numbers[r];
         }
         return result;
     }
