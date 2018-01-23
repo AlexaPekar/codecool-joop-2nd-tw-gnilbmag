@@ -3,6 +3,7 @@
 public class Result {
 
     Statistics statistics;
+    int[] lotteryNums = new int[6];
     
 
     public Statistics getStatistics() {
