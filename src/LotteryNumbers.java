@@ -6,4 +6,9 @@ public class LotteryNumbers {
         this.number = number;
         this.occurance = occurance;
     }
+
+    public LotteryNumbers(int number) {
+        this.number = number;
+        
+    }
 }
