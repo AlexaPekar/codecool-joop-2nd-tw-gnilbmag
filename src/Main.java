@@ -1,7 +1,10 @@
 //Starts the application. Able to configure the round of the simulations to run by taking an argument from the command line.
+import java.util.InputMismatchException;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
+    Logger logger;
 
     public static Simulation generateSimulation(int round) {
         Simulation mySimulation = new Simulation();
@@ -16,27 +19,39 @@ public class Main {
         return mySimulation;
     }
 
-    public static void main(String[] args) {
-        /*Simulation simulation = new Simulation();
-        Simulator test = new Simulator(simulation);
-        test.countNums();*/
-/*
-        Logger logger = new Logger();
-        Simulation simulation = generateSimulation(Integer.parseInt(args[0]));
-        Simulator simulator = new Simulator(simulation, logger);
-        Result result = simulator.run();
-        logger.print(result.getStrategy());
-*/      
-        Simulation simulation = generateSimulation(args[0]);
-
-        for (String[] x : simulation.previousLotteryNumbers) {
-            for (String y : x) {
-                System.out.print(y); 
+    public static int inputCheck(String input,Logger logger){
+        Scanner reader = new Scanner(System.in);
+        int n=0;
+        try{
+           n = Integer.parseInt(input);
+            if(n<0){
+                logger.log("Error: ","Input can not be negative!");
+                logger.log("","Please, enter new input!");
+                String s = reader.next();
+                n = Integer.parseInt(s);
+                if(n<0){
+                    inputCheck(input, logger);
+                }
+                
             }
-            System.out.println();
-        }   
+        }catch(Exception e){
+            logger.log("Error: ", "Wrong input type!(Expected input is a number.)");
+            logger.log("","Please, enter new input!");
+            String s = reader.next();
+            
+            try{n = Integer.parseInt(s);}catch(Exception l){inputCheck(input,logger);}
+            
+        }  
+        return n;
+    }
 
-        Simulator simulator = new Simulator(simulation);
+    public static void main(String[] args) {
+        Logger logger = new Logger();
+        int n = inputCheck(args[0],logger);
+        
+        Simulation simulation = generateSimulation(n);
+        Simulator simulator = new Simulator(simulation,logger);
+        
         simulator.run();
 
         

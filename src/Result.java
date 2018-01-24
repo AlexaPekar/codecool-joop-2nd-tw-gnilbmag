@@ -6,9 +6,9 @@ public class Result {
     LotteryNumbers[] lotteryNums = new LotteryNumbers[6];
     
 
-    public Statistics getStatistics() {
+    /*public Statistics getStatistics() {
         return null;
-    }
+    }*/
 
     /*public void setStatistics() {
     }*/

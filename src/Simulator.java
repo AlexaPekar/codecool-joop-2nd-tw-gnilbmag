@@ -8,8 +8,9 @@ public class Simulator{
     int[] numOccurances = new int[45];  //Counts occurances of each number
 
 
-    public Simulator(Simulation simulation/*Logger logger*/){
+    public Simulator(Simulation simulation,Logger logger){
         this.simulation=simulation;
+        this.logger=logger;
     }
 
     public boolean equals(LotteryNumbers a,LotteryNumbers b){
@@ -26,7 +27,8 @@ public class Simulator{
         countNums();
         results.lotteryNums=collectWinningNumbers(numOccurances);
         for(LotteryNumbers x : results.lotteryNums){
-            System.out.println(x.number+" "+x.occurance); //instead call a logger method or sth like that ;)
+            
+            logger.log("","Number: "+x.number+"    Occurance: "+x.occurance);
         }
         return results;
     }
