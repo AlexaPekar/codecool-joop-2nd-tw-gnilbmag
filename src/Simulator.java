@@ -12,15 +12,6 @@ public class Simulator{
         this.simulation=simulation;
         this.logger=logger;
     }
-
-    public boolean equals(LotteryNumbers a,LotteryNumbers b){
-        if(a.number == b.number){
-            return true;
-        }else{
-            return false;
-        }
-
-    }
  
     public Result run(){
         Result results = new Result();
@@ -28,7 +19,7 @@ public class Simulator{
         results.lotteryNums=collectWinningNumbers(numOccurances);
         for(LotteryNumbers x : results.lotteryNums){
             
-            logger.log("","Number: "+x.number+"    Occurance: "+x.occurance);
+            logger.log("Info: ","Number: "+x.number+"    Occurance: "+x.occurance);
         }
         return results;
     }
