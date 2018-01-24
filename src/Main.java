@@ -2,17 +2,33 @@
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     Logger logger;
 
+    public static boolean contains(int[] nums, int num) {
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == num) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static Simulation generateSimulation(int round) {
         Simulation mySimulation = new Simulation();
         Random rand = new Random();
-        int[] randomNums = new int[6]; 
+        int[] randomNums = new int[6];
         for(int i=0;i<round;i++){
-            for (int j=0; j<6; j++) {
-                randomNums[j] = rand.nextInt(45)+1;
+            randomNums[0] = rand.nextInt(45)+1;
+            for (int j=1; j<6; j++) {
+                int n = rand.nextInt(45)+1; 
+                while (contains(randomNums,n)) {
+                    n = rand.nextInt(45)+1;
+                }
+                randomNums[j] = n;
             } 
             mySimulation.generateData(randomNums);
         }
@@ -26,7 +42,7 @@ public class Main {
            n = Integer.parseInt(input);
             if(n<0){
                 logger.log("Error: ","Input can not be negative!");
-                logger.log("","Please, enter new input!");
+                logger.log("Message: ","Please, enter new input!");
                 String s = reader.next();
                 n = Integer.parseInt(s);
                 if(n<0){
@@ -36,7 +52,7 @@ public class Main {
             }
         }catch(Exception e){
             logger.log("Error: ", "Wrong input type!(Expected input is a number.)");
-            logger.log("","Please, enter new input!");
+            logger.log("Message: ","Please, enter new input!");
             String s = reader.next();
             
             try{n = Integer.parseInt(s);}catch(Exception l){inputCheck(input,logger);}
@@ -53,9 +69,5 @@ public class Main {
         Simulator simulator = new Simulator(simulation,logger);
         
         simulator.run();
-
-        
-
-      
     }
 }
