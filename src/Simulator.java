@@ -22,11 +22,12 @@ public class Simulator{
             
             logger.log("Info: ","Number: "+x.number+"    Occurance: "+x.occurance);
         }
+        //Statistics stat = new Statistics(simulation.array)
         return results;
     }
 
     public void countNums() {
-        String[][] tmpArray = simulation.load("../data/simulationResults.csv");
+        String[][] tmpArray = simulation.load("../data/simulationResults.csv");//use previousLotteryNumbers Array[][]
         int counter = 0;
         for(int i = 0; i < tmpArray.length;i++) {
             for(int k = 0; k < tmpArray[i].length;k++) {
