@@ -35,7 +35,7 @@ public class Main {
         return mySimulation;
     }
 
-    public static int inputCheck(String input,Logger logger){
+    public static int checkInput(String input,Logger logger){
         Scanner reader = new Scanner(System.in);
         int n=0;
         try{
@@ -46,7 +46,7 @@ public class Main {
                 String s = reader.next();
                 n = Integer.parseInt(s);
                 if(n<0){
-                    inputCheck(input, logger);
+                    checkInput(input, logger);
                 }
                 
             }
@@ -55,7 +55,14 @@ public class Main {
             logger.log("Message: ","Please, enter new input!");
             String s = reader.next();
             
-            try{n = Integer.parseInt(s);}catch(Exception l){inputCheck(input,logger);}
+            try{
+                n = Integer.parseInt(s);
+                if(n<0){
+                    checkInput(input, logger);
+                }
+            }catch(Exception l){
+                checkInput(input,logger);
+            }
             
         }  
         return n;
@@ -63,7 +70,7 @@ public class Main {
 
     public static void main(String[] args) {
         Logger logger = new Logger();
-        int n = inputCheck(args[0],logger);
+        int n = checkInput(args[0],logger);
         
         Simulation simulation = generateSimulation(n);
         Simulator simulator = new Simulator(simulation,logger);
