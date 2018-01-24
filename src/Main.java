@@ -4,6 +4,10 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Date;
+import java.text.NumberFormat;
+import java.text.DecimalFormat;
+
 
 public class Main {
     Logger logger;
@@ -69,12 +73,20 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        Date before = new Date();
+        Date after = new Date();
         Logger logger = new Logger();
         int n = checkInput(args[0],logger);
-        
+     
+        long startTime = System.nanoTime();
         Simulation simulation = generateSimulation(n);
         Simulator simulator = new Simulator(simulation,logger);
-        
+       
         simulator.run();
-    }
+        long endTime = System.nanoTime();
+        NumberFormat formatter = new DecimalFormat("0.00");
+        String runtimeSeconds = formatter.format((endTime-startTime)/1000000000.0);
+        
+        logger.log("Simulation runtime: ", runtimeSeconds+" s");
+    }   
 }
