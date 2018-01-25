@@ -102,5 +102,9 @@ public class Main {
         lottery.inputNumbers();
         lottery.findAverageMatches();
         logger.log("Info: ", "Your average match in lottery: " + formatter.format((double)lottery.avarageMatches));
+        lottery.playLottery();
+        
+
+        
     }   
 }

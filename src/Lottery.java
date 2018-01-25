@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Random;
 
 public class Lottery{
     
@@ -32,7 +33,36 @@ public class Lottery{
         avarageMatches = counter/allLotteryNums.length;
     }
 
-    
+    public void playLottery(){
+        int[] yourNums = new int[6];
+        int counter=0;
+        Random rand = new Random();
+        int[] randomNums = new int[6];
+        randomNums[0]=rand.nextInt(45)+1;
+        for (int j=1; j<6; j++) {
+            int n = rand.nextInt(45)+1; 
+            while (Main.contains(randomNums,n)) {
+                n = rand.nextInt(45)+1;
+            }
+            randomNums[j] = n;
+        } 
+        
 
-
+        inputNumbers();
+        for(int l = 0;l<6;l++){
+            yourNums[l]=Integer.parseInt(this.yourNums[l]);
+        }
+        for (int num : yourNums) {
+            if (Main.contains(randomNums, num)) {
+                counter += 1;
+            }
+        }
+        logger.log("Winning numbers: ","","");
+        for(int k : randomNums){
+           
+            logger.log("",k+" ","");
+        }
+        logger.log("\nInfo: ","The number of you matches: "+counter);
+        
+    }
 }
