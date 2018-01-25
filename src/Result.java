@@ -5,6 +5,7 @@ public class Result {
     Statistics statistics;
     LotteryNumbers[] lotteryNums = new LotteryNumbers[6];
     
+    
 
     public Statistics getStatistics() {
         return null;
