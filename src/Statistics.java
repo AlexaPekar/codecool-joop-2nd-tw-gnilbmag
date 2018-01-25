@@ -1,7 +1,7 @@
 public class Statistics {
-    private double averageMatches ;
-    private String runtime;
-    private int numOfSimulations;
+    private double averageMatches=0.0;
+    private String runtime="";
+    private int numOfSimulations=0;
 
     public double getAverageMatches(){
         return averageMatches;

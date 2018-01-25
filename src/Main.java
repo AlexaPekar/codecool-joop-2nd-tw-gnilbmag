@@ -30,7 +30,7 @@ public class Main {
         return false;
     }
 
-    public static Simulation generateSimulation(int round) {
+    public Simulation generateSimulation(int round) {
         Simulation mySimulation = new Simulation();
         Random rand = new Random();
         int[] randomNums = new int[6];
@@ -48,7 +48,7 @@ public class Main {
         return mySimulation;
     }
 
-    public static int checkInput(String input,Logger logger){
+    public int checkInput(String input,Logger logger){
         Scanner reader = new Scanner(System.in);
         int n=0;
         try{
@@ -81,31 +81,73 @@ public class Main {
         return n;
     }
 
+    public void printStatistics(Statistics stats) {
+        logger.log("Info: ", "Number of simulations were run: " + stats.getNumOfSimulations());
+        logger.log("Info: ", "Runtime of the simulation: " + stats.getRuntime());
+        logger.log("Info: ", "Average of your matches in all the simulations: " + stats.getAverageMatches());
+    }
+
     public static void main(String[] args) {
+        Scanner reader = new Scanner(System.in);
+        Main myMain = new Main();
         Statistics statistics = new Statistics();
         Logger logger = new Logger();
-        int n = checkInput(args[0],logger);
+
+        int n = myMain.checkInput(args[0],logger);
         statistics.setNumOfSimulations(n);
         long startTime = System.nanoTime();
-        Simulation simulation = generateSimulation(n);
+        Simulation simulation = myMain.generateSimulation(n);
         Simulator simulator = new Simulator(simulation,logger);
-       
-        simulator.run();
-        long endTime = System.nanoTime();
+
+     
         NumberFormat formatter = new DecimalFormat("0.00");
-        String runtimeSeconds = formatter.format((endTime-startTime)/1000000000.0);
-        statistics.setRuntime(runtimeSeconds);
+
         
-        logger.log("Simulation runtime: ", runtimeSeconds+" s");
+
 
         Lottery lottery = new Lottery(simulation, logger);
-        lottery.inputNumbers();
-        lottery.findAverageMatches();
-        statistics.setAverageMatches(lottery.avarageMatches);
-        logger.log("Info: ", "Your average match in lottery: " + formatter.format((double)lottery.avarageMatches));
-        lottery.playLottery();
-       
-       
+
+        int counter = 0;
+        while (true) {
+            simulator.run();
+            long endTime = System.nanoTime();
+            String runtimeSeconds = formatter.format((endTime-startTime)/1000000000.0);
+            if(counter == 0){
+                statistics.setRuntime(runtimeSeconds);
+            }
+            counter++;
+
+            logger.log("Simulation runtime: ", statistics.getRuntime() + " s");
+            logger.log("\n", "(1) Test the program's efficiency");
+            logger.log("", "(2) Play a lottery");
+            logger.log("", "(3) Statistics");
+            logger.log("", "(4) Exit");
+
+            logger.log("", "Please, choose an option: ");
+            int input = reader.nextInt();
+            String back; 
+            switch(input) {
+                case 1:
+                    lottery.findAverageMatches();
+                    statistics.setAverageMatches(lottery.avarageMatches);
+                    logger.log("Message: ", "Enter any key to go back!");
+                    back = reader.next();
+                break;
+                case 2:
+                    lottery.playLottery();
+                    logger.log("Message: ", "Enter any key to go back!");
+                    back = reader.next();
+                break;
+                case 3:
+                    myMain.printStatistics(statistics);
+                    logger.log("Message: ", "Enter any key to go back!");
+                    back = reader.next();
+                break;
+                case 4:
+                    System.exit(0);
+                break;
+            }
+        }
         
 
         

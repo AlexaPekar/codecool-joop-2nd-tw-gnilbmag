@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import java.util.Random;
+import java.text.NumberFormat;
+import java.text.DecimalFormat;
 
 public class Lottery{
     
@@ -21,6 +23,8 @@ public class Lottery{
     }
 
     public void findAverageMatches() {
+        NumberFormat formatter = new DecimalFormat("0.00");
+        inputNumbers();
         double counter = 0.0;
         String[][] allLotteryNums = simulation.previousLotteryNumbers;
         for (String[] lotteryNums : allLotteryNums) {
@@ -31,6 +35,7 @@ public class Lottery{
             }
         }
         avarageMatches = counter/allLotteryNums.length;
+        logger.log("Info: ", "Your average match in lottery: " + formatter.format((double)avarageMatches));
     }
 
     public void playLottery(){
@@ -46,8 +51,6 @@ public class Lottery{
             }
             randomNums[j] = n;
         } 
-        
-
         inputNumbers();
         for(int l = 0;l<6;l++){
             yourNums[l]=Integer.parseInt(this.yourNums[l]);
