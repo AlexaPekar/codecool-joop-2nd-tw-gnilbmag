@@ -82,11 +82,10 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Date before = new Date();
-        Date after = new Date();
+        Statistics statistics = new Statistics();
         Logger logger = new Logger();
         int n = checkInput(args[0],logger);
-     
+        statistics.setNumOfSimulations(n);
         long startTime = System.nanoTime();
         Simulation simulation = generateSimulation(n);
         Simulator simulator = new Simulator(simulation,logger);
@@ -95,14 +94,18 @@ public class Main {
         long endTime = System.nanoTime();
         NumberFormat formatter = new DecimalFormat("0.00");
         String runtimeSeconds = formatter.format((endTime-startTime)/1000000000.0);
+        statistics.setRuntime(runtimeSeconds);
         
         logger.log("Simulation runtime: ", runtimeSeconds+" s");
 
         Lottery lottery = new Lottery(simulation, logger);
         lottery.inputNumbers();
         lottery.findAverageMatches();
+        statistics.setAverageMatches(lottery.avarageMatches);
         logger.log("Info: ", "Your average match in lottery: " + formatter.format((double)lottery.avarageMatches));
         lottery.playLottery();
+       
+       
         
 
         
