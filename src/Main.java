@@ -11,6 +11,8 @@ import java.text.DecimalFormat;
 
 public class Main {
     Logger logger;
+    
+    
 
     public static boolean contains(int[] nums, int num) {
         for (int i = 0; i < nums.length; i++) {
@@ -81,16 +83,12 @@ public class Main {
         return n;
     }
 
-    public void printStatistics(Statistics stats) {
-        logger.log("Info: ", "Number of simulations were run: " + stats.getNumOfSimulations());
-        logger.log("Info: ", "Runtime of the simulation: " + stats.getRuntime());
-        logger.log("Info: ", "Average of your matches in all the simulations: " + stats.getAverageMatches());
-    }
 
     public static void main(String[] args) {
         Scanner reader = new Scanner(System.in);
         Main myMain = new Main();
         Statistics statistics = new Statistics();
+   
         Logger logger = new Logger();
 
         int n = myMain.checkInput(args[0],logger);
@@ -126,6 +124,8 @@ public class Main {
             logger.log("", "Please, choose an option: ");
             int input = reader.nextInt();
             String back; 
+            
+            
             switch(input) {
                 case 1:
                     lottery.findAverageMatches();
@@ -139,7 +139,9 @@ public class Main {
                     back = reader.next();
                 break;
                 case 3:
-                    myMain.printStatistics(statistics);
+                    logger.log("Info: ", "Number of simulations were run: " + statistics.getNumOfSimulations());
+                    logger.log("Info: ", "Runtime of the simulation: " + statistics.getRuntime());
+                    logger.log("Info: ", "Average of your matches in all the simulations: " + statistics.getAverageMatches());
                     logger.log("Message: ", "Enter any key to go back!");
                     back = reader.next();
                 break;

@@ -1,6 +1,6 @@
 public class Statistics {
     private double averageMatches=0.0;
-    private String runtime="";
+    private String runtime=" ";
     private int numOfSimulations=0;
 
     public double getAverageMatches(){
