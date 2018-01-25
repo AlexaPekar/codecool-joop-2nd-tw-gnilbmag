@@ -4,9 +4,9 @@ public class Lottery{
     
     Simulation simulation;
     Logger logger;
-    int matches=0;
+    double avarageMatches = 0.0;
     Scanner scanner = new Scanner(System.in);
-    int[] yourNums = new int[6];
+    String[] yourNums = new String[6];
 
     public Lottery(Simulation simulation,Logger logger){
         this.simulation=simulation;
@@ -17,6 +17,19 @@ public class Lottery{
         logger.log("Message: ","Please, enter your guesses (6 numbers from 1 to 45) seperated with spaces!");
         String guesses = scanner.nextLine();
         yourNums = guesses.split(" ");
+    }
+
+    public void findAverageMatches() {
+        double counter = 0.0;
+        String[][] allLotteryNums = simulation.previousLotteryNumbers;
+        for (String[] lotteryNums : allLotteryNums) {
+            for (String num : yourNums) {
+                if (Main.contains(lotteryNums, num)) {
+                    counter += 1;
+                }
+            }
+        }
+        avarageMatches = counter/allLotteryNums.length;
     }
 
     

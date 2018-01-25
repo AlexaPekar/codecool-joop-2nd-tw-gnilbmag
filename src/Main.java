@@ -21,6 +21,15 @@ public class Main {
         return false;
     }
 
+    public static boolean contains(String[] nums, String num) {
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i].equals(num)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static Simulation generateSimulation(int round) {
         Simulation mySimulation = new Simulation();
         Random rand = new Random();
@@ -88,5 +97,10 @@ public class Main {
         String runtimeSeconds = formatter.format((endTime-startTime)/1000000000.0);
         
         logger.log("Simulation runtime: ", runtimeSeconds+" s");
+
+        Lottery lottery = new Lottery(simulation, logger);
+        lottery.inputNumbers();
+        lottery.findAverageMatches();
+        logger.log("Info: ", "Your average match in lottery: " + formatter.format((double)lottery.avarageMatches));
     }   
 }
