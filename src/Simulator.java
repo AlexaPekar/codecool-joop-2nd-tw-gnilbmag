@@ -15,14 +15,14 @@ public class Simulator{
     }
  
     public Result run(){
+
         Result results = new Result();
+        logger.log("\n\n", "The computer suggests these numbers to win the lottery!\n");
         countNums();
         results.lotteryNums=collectWinningNumbers(numOccurances);
         for(LotteryNumbers x : results.lotteryNums){
-            
             logger.log("Info: ","Number: "+x.number+"    Occurance: "+x.occurance);
         }
-        //Statistics stat = new Statistics(simulation.array)
         return results;
     }
 

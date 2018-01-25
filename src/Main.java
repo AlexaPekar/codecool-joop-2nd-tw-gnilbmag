@@ -83,6 +83,10 @@ public class Main {
         return n;
     }
 
+    public static void clearScreen() {  
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();
+    }
 
     public static void main(String[] args) {
         Scanner reader = new Scanner(System.in);
@@ -97,16 +101,13 @@ public class Main {
         Simulation simulation = myMain.generateSimulation(n);
         Simulator simulator = new Simulator(simulation,logger);
 
-     
         NumberFormat formatter = new DecimalFormat("0.00");
-
-        
-
 
         Lottery lottery = new Lottery(simulation, logger);
 
         int counter = 0;
         while (true) {
+            clearScreen();
             simulator.run();
             long endTime = System.nanoTime();
             String runtimeSeconds = formatter.format((endTime-startTime)/1000000000.0);
@@ -115,13 +116,13 @@ public class Main {
             }
             counter++;
 
-            logger.log("Simulation runtime: ", statistics.getRuntime() + " s");
+            logger.log("\nSimulation runtime: ", statistics.getRuntime() + " s\n");
             logger.log("\n", "(1) Test the program's efficiency");
             logger.log("", "(2) Play a lottery");
             logger.log("", "(3) Statistics");
-            logger.log("", "(4) Exit");
+            logger.log("", "(0) Exit");
 
-            logger.log("", "Please, choose an option: ");
+            logger.log("\n", "Please, choose an option: ", "");
             int input = reader.nextInt();
             String back; 
             
@@ -130,22 +131,24 @@ public class Main {
                 case 1:
                     lottery.findAverageMatches();
                     statistics.setAverageMatches(lottery.avarageMatches);
-                    logger.log("Message: ", "Enter any key to go back!");
+                    logger.log("\n\nMessage: ", "Enter any key to go back!","");
                     back = reader.next();
                 break;
                 case 2:
+                    clearScreen();
                     lottery.playLottery();
-                    logger.log("Message: ", "Enter any key to go back!");
+                    logger.log("\n\nMessage: ", "Enter any key to go back!","");
                     back = reader.next();
                 break;
                 case 3:
-                    logger.log("Info: ", "Number of simulations were run: " + statistics.getNumOfSimulations());
-                    logger.log("Info: ", "Runtime of the simulation: " + statistics.getRuntime());
-                    logger.log("Info: ", "Average of your matches in all the simulations: " + statistics.getAverageMatches());
-                    logger.log("Message: ", "Enter any key to go back!");
+                    clearScreen();
+                    logger.log("\n\nInfo: ", "Number of simulations were run: " + statistics.getNumOfSimulations());
+                    logger.log("\nInfo: ", "Runtime of the simulation: " + statistics.getRuntime());
+                    logger.log("\nInfo: ", "Average of your matches in all the simulations: " + statistics.getAverageMatches());
+                    logger.log("\n\nMessage: ", "Enter any key to go back!","");
                     back = reader.next();
                 break;
-                case 4:
+                case 0:
                     System.exit(0);
                 break;
             }

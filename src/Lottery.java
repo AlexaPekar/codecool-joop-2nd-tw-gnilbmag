@@ -17,7 +17,7 @@ public class Lottery{
     }
 
     public void inputNumbers(){
-        logger.log("Message: ","Please, enter your guesses (6 numbers from 1 to 45) seperated with spaces!");
+        logger.log("\n\nMessage: ","Please, enter your guesses (6 numbers from 1 to 45) seperated with spaces!");
         String guesses = scanner.nextLine();
         yourNums = guesses.split(" ");
     }
@@ -35,7 +35,7 @@ public class Lottery{
             }
         }
         avarageMatches = counter/allLotteryNums.length;
-        logger.log("Info: ", "Your average match in lottery: " + formatter.format((double)avarageMatches));
+        logger.log("\nInfo: ", "Your average match in lottery: " + formatter.format((double)avarageMatches));
     }
 
     public void playLottery(){
@@ -60,12 +60,12 @@ public class Lottery{
                 counter += 1;
             }
         }
-        logger.log("Winning numbers: ","","");
+        logger.log("\nWinning numbers: ","","");
         for(int k : randomNums){
            
             logger.log("",k+" ","");
         }
-        logger.log("\nInfo: ","The number of you matches: "+counter);
+        logger.log("\n\nInfo: ","The number of your matches: "+counter);
         
     }
 }

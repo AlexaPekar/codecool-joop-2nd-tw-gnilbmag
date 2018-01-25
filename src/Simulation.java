@@ -14,7 +14,7 @@ public class Simulation{
     String[][] previousLotteryNumbers;
 
     public void generateData(int[] winningNumbers) {
-        String[][] tempArray = load("../data/lotteryNumbers.csv");
+        String[][] tempArray = load("../data/simulationResults.csv");
         previousLotteryNumbers = new String[tempArray.length+1][6];
         int counter = 0;
         try {
