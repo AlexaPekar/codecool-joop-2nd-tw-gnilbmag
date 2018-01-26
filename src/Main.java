@@ -1,4 +1,3 @@
-//Starts the application. Able to configure the round of the simulations to run by taking an argument from the command line.
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
@@ -8,12 +7,12 @@ import java.util.Date;
 import java.text.NumberFormat;
 import java.text.DecimalFormat;
 
-
 public class Main {
-    Logger logger;
-    
-    
 
+
+    Logger logger;
+
+    
     public static boolean contains(int[] nums, int num) {
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] == num) {
@@ -23,6 +22,7 @@ public class Main {
         return false;
     }
 
+
     public static boolean contains(String[] nums, String num) {
         for (int i = 0; i < nums.length; i++) {
             if (nums[i].equals(num)) {
@@ -31,6 +31,7 @@ public class Main {
         }
         return false;
     }
+
 
     public Simulation generateSimulation(int round) {
         Simulation mySimulation = new Simulation();
@@ -50,43 +51,44 @@ public class Main {
         return mySimulation;
     }
 
-    public int checkInput(String input,Logger logger){
+
+    public int checkInput(String input,Logger logger) {
         Scanner reader = new Scanner(System.in);
-        int n=0;
-        try{
+        int n = 0;
+        try {
            n = Integer.parseInt(input);
-            if(n<0){
+            if (n<0) {
                 logger.log("Error: ","Input can not be negative!");
                 logger.log("Message: ","Please, enter new input!");
                 String s = reader.next();
                 n = Integer.parseInt(s);
-                if(n<0){
+                if(n < 0) {
                     checkInput(input, logger);
-                }
-                
+                }  
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             logger.log("Error: ", "Wrong input type!(Expected input is a number.)");
             logger.log("Message: ","Please, enter new input!");
             String s = reader.next();
             
-            try{
+            try {
                 n = Integer.parseInt(s);
-                if(n<0){
+                if (n < 0) {
                     checkInput(input, logger);
                 }
-            }catch(Exception l){
+            } catch (Exception l) {
                 checkInput(input,logger);
-            }
-            
-        }  
+            } 
+        }
         return n;
     }
+
 
     public static void clearScreen() {  
         System.out.print("\033[H\033[2J");  
         System.out.flush();
     }
+
 
     public static void main(String[] args) {
         Scanner reader = new Scanner(System.in);
@@ -123,10 +125,9 @@ public class Main {
             logger.log("", "(0) Exit");
 
             logger.log("\n", "Please, choose an option: ", "");
-            int input = reader.nextInt();
-            String back; 
-            
-            
+            int input = reader.nextInt();            
+            String back;
+
             switch(input) {
                 case 1:
                     lottery.findAverageMatches();
@@ -153,8 +154,7 @@ public class Main {
                 break;
             }
         }
-        
+    }
 
-        
-    }   
+    
 }
